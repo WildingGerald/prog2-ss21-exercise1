@@ -9,7 +9,7 @@ public class rocketFuelCalculator {
     int totalFuel;
 
     rocketFuelCalculator(){
-        modulesMass = new ArrayList<Integer>();
+        modulesMass = new ArrayList<>();
         totalFuel = 0;
     }
     public ArrayList<Integer> getModulesMass(){
@@ -29,11 +29,14 @@ public class rocketFuelCalculator {
         }
     }
 
-    public void calculateFuel(){
-        totalFuel = 42;
+    public void calculateFuel() throws Exception{
+        for (int module :
+                modulesMass) {
+            totalFuel += calculateFuelForModule(module);
+        }
     }
 
-    public int calculateFuel(int mass)throws Exception{
+    public int calculateFuelForModule(int mass)throws Exception{
         int requiredFuel;
         if (mass > 9)
         {

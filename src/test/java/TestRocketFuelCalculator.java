@@ -25,8 +25,8 @@ public class TestRocketFuelCalculator {
         try{
             testRocket.importData("wrongPath");
             fail();
-        }catch (IOException e){
-
+        }catch (FileNotFoundException e){
+            assertNotNull(e);
         }
     }
 
@@ -45,7 +45,7 @@ public class TestRocketFuelCalculator {
        try{
            testRocket.importData("src/test/resources/testData");
            testRocket.calculateFuel();
-           assertEquals(658+3358, testRocket.totalFuel);
+           assertEquals(34241, testRocket.totalFuel);
        }catch (Exception e){
            fail();
        }
