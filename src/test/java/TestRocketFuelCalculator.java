@@ -45,23 +45,13 @@ public class TestRocketFuelCalculator {
        try{
            testRocket.importData("src/test/resources/testData");
            testRocket.calculateFuel();
-           assertEquals(34241, testRocket.totalFuel);
+           assertEquals(51316, testRocket.totalFuel);
        }catch (Exception e){
            fail();
        }
 
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {12 , 14, 1969, 100756})
-    public void testCalculateFuelForModule_pass(int in) {
-        List expected = Arrays.asList(2, 2, 654, 33583);
-        try {
-            Assertions.assertTrue(expected.contains(testRocket.calculateFuelForModule(in)));
-        }catch (Exception e){
-            fail();
-        }
-    }
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 5})
     public void testCalculateFuelForModule_massNegativeTooLow(int in){
@@ -70,6 +60,17 @@ public class TestRocketFuelCalculator {
             fail();
         }catch (Exception e){
             Assertions.assertTrue(e.getMessage().equalsIgnoreCase("Mass negative or too low to calculate fuel for."));
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {12 , 14, 1969, 100756})
+    public void testCalculateFuelForFuel_pass(int in){
+        List expected = Arrays.asList(2, 2, 966, 50346);
+        try {
+            Assertions.assertTrue(expected.contains(testRocket.calculateFuelForModule(in)));
+        }catch (Exception e){
+            fail();
         }
     }
 }

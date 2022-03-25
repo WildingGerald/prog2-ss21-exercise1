@@ -46,6 +46,17 @@ public class rocketFuelCalculator {
         }else{
             throw new Exception("Mass negative or too low to calculate fuel for.");
         }
-       return requiredFuel;
+       return requiredFuel + calculateFuelForFuel(requiredFuel);
+    }
+
+    public int calculateFuelForFuel(int fuel) {
+        double h = fuel / 3d;
+        double b = Math.floor(h);
+        int requiredFuel = (int) b - 2;
+        if (requiredFuel < 0) {
+            return 0;
+        }else {
+            return requiredFuel + calculateFuelForFuel(requiredFuel);
+        }
     }
 }
