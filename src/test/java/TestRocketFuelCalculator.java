@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class TestRocketFuelCalculator {
 
     rocketFuelCalculator testRocket;
-    @BeforeAll
+    @BeforeEach
     void setUp(){
         testRocket = new rocketFuelCalculator();
     }
@@ -32,9 +33,9 @@ public class TestRocketFuelCalculator {
     @Test
     public void testImportData_pass(){
         try{
-            testRocket.importData("resources/data");
+            testRocket.importData("/home/adre/IdeaProjects/prog2-ss21-exercise1/src/test/resources/data");
             Assertions.assertTrue(testRocket.modulesMass.contains(91617));
-        }catch (Exception e){
+        }catch (FileNotFoundException e){
             fail();
         }
     }
